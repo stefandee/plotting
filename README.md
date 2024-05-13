@@ -12,17 +12,6 @@ In 2024, the SDL version was further improved (bug fixes, added sound, save/load
 
 You can read more about the history behind this remake here: https://www.pirongames.com/nostalgia-the-first-game/
 
-## Screeshots
-
-Latest version
-![plotting menu](.media/plotting_menu.png "Main Menu")
-![plotting highscores](.media/plotting_highscores.png "Highscores")
-![plotting gameplay](.media/plotting_gameplay.png "Gameplay")
-
-Original version
-![plotting 1993 menu](.media/plotting_1993_menu.png "Main Menu")
-![plotting 1993 gameplay](.media/plotting_1993_gameplay.png "Gameplay")
-
 ## License
 
 Code license:
@@ -64,3 +53,14 @@ Smoother tile movement.
 Add more levels.
 Music support.
 True full-screen (might need porting to SDL 2)
+
+## Screeshots
+
+Latest version
+![plotting menu](.media/plotting_menu.png "Main Menu")
+![plotting highscores](.media/plotting_highscores.png "Highscores")
+![plotting gameplay](.media/plotting_gameplay.png "Gameplay")
+
+Original version
+![plotting 1993 menu](.media/plotting_1993_menu.png "Main Menu")
+![plotting 1993 gameplay](.media/plotting_1993_gameplay.png "Gameplay")

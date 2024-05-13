@@ -1,0 +1,20 @@
+{
+  "keyboard" : {
+    "up" : 273,
+    "down" : 274,
+    "fire" : 32,
+    "pause" : 112
+  },
+  "graphics" : {
+    "resolution" : {
+      "fullScreen" : false,
+      "width" : 853,
+      "height" : 480
+    }
+  },
+  "cheats" : {
+    "freeze" : false,
+    "blast" : false,
+	"spacewarp": 1
+  }
+}
