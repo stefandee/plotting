@@ -50,10 +50,10 @@ These are:
 * "spacewarp": starting level.
 
 ## TODO
-Smoother tile movement.
-Add more levels.
-Music support.
-True full-screen (might need porting to SDL 2)
+* Smoother tile movement;
+* Add more levels;
+* Music support;
+* True full-screen (might need porting to SDL 2).
 
 ## Screeshots
 
