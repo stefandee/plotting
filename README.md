@@ -44,9 +44,10 @@ It may be built using fpc -Mtp flag (compatibility with Turbo/Borland Pascal).
 ## Cheats
 Open settings.json and locate the section "cheats".
 
-freeze = infinite time
-blast = infinite lives
-spacewarp = starting level
+These are:
+* "freeze": infinite time;
+* "blast": infinite lives;
+* "spacewarp": starting level.
 
 ## TODO
 Smoother tile movement.
@@ -56,9 +57,11 @@ True full-screen (might need porting to SDL 2)
 
 ## Screeshots
 
-Latest version
+Latest version:
 ![plotting menu](.media/plotting_menu.png "Main Menu")
 ![plotting highscores](.media/plotting_highscores.png "Highscores")
 ![plotting gameplay](.media/plotting_gameplay.png "Gameplay")
+
+Original version:
 ![plotting 1993 menu](.media/plotting_1993_menu.png "Main Menu")
 ![plotting 1993 gameplay](.media/plotting_1993_gameplay.png "Gameplay")
