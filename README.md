@@ -60,7 +60,5 @@ Latest version
 ![plotting menu](.media/plotting_menu.png "Main Menu")
 ![plotting highscores](.media/plotting_highscores.png "Highscores")
 ![plotting gameplay](.media/plotting_gameplay.png "Gameplay")
-
-Original version
 ![plotting 1993 menu](.media/plotting_1993_menu.png "Main Menu")
 ![plotting 1993 gameplay](.media/plotting_1993_gameplay.png "Gameplay")
