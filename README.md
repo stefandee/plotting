@@ -1,10 +1,12 @@
 # Plotting
 
-Welcome to Plotting, an almost remake of Plotting/Flipull.
+Welcome to Plotting, a remake of Plotting/Flipull.
 
-It keeps most of the original features, the only major difference is it replaces the "power" system with a timer system.
+It keeps most of the original game features, the only major difference is it replaces the "power" system with a timer system.
 
-The remake was create in 1993 and written in Turbo Pascal. It was our (myself and Alex Mazilu) first (almost) complete game for x86 PC.
+The remake was created in 1992-1993 and written in Turbo Pascal. It was our (myself and Alex Mazilu) first (almost) complete game for x86 PC.
+
+Only 8 levels exist so far.
 
 In 2007, the remake was ported to SDL 1.2 and made to work with the Free Pascal compiler.
 
@@ -61,6 +63,7 @@ Latest version:
 ![plotting menu](.media/plotting_menu.png "Main Menu")
 ![plotting highscores](.media/plotting_highscores.png "Highscores")
 ![plotting gameplay](.media/plotting_gameplay.png "Gameplay")
+
 
 Original version:
 ![plotting 1993 menu](.media/plotting_1993_menu.png "Main Menu")
