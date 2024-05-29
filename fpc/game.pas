@@ -7,7 +7,8 @@ uses
   SDLUtils,
   PlottingUtils,
   Math,
-  Audio;
+  Audio,
+  Music;
 
 procedure InitGame;
 procedure RenderGame;
@@ -153,6 +154,7 @@ procedure ResetExplosions; forward;
 function IsNormalTile(tile : char) : boolean; forward;
 function IsEmptyTile(tile : char) : boolean; forward;
 function IsSpecialTile(tile : char) : boolean; forward;
+procedure TransitionToMenu; forward;
 
 procedure SetMCState(state : TMCState);
 begin
@@ -275,6 +277,7 @@ begin
   GamePlayState   := GPS_INIT;
   TimerWarningAudioTriggered := false;
 
+  StopModule;
   InitLevelTitle;
 end;
 
@@ -296,6 +299,8 @@ begin
         if (IsKeyDown or (SDL_GetTicks() - TimeSnap > LEVEL_TITLE_DELAY)) then
         begin
           GamePlayState := GPS_PLAY;
+		  LoadModule(MUSIC_GAME_FILE_NAME);
+		  PlayModule;
         end;
       end;
 
@@ -368,7 +373,7 @@ begin
         if (key = SDLK_ESCAPE) then
         begin
           { TODO: transition + quit dialog :) }
-          StartTransByRect(2, 12, GS_MENU);
+		  TransitionToMenu;
         end;
 
         UpdateExplosions;
@@ -377,6 +382,8 @@ begin
         LastGetTicks := SDL_GetTicks();
 
         if ElapsedTime > LEVEL_TIME then begin
+		  StopModule;	
+		
           GamePlayState := GPS_END;
 
           dec(lives);
@@ -420,12 +427,14 @@ begin
                   StartTransByRect(2, 12, GS_ENTER_TOPSCORE);
                 end
                 else begin
-                  StartTransByRect(2, 12, GS_MENU);
+		          TransitionToMenu;
                 end;
               end;
 
             GO_TIME_UP:
               begin
+				PlayModule;
+			  
                 { restart this level }
                 SetupLevel;
 
@@ -475,7 +484,20 @@ end;
 procedure RenderLevelTitle;
 var
   m : string;
+  floorTileX, wallTileY, floorTileCount: integer;
 begin
+  { render the floor }
+  floorTileCount := Round(SCREEN_WIDTH div 40);
+  
+  for floorTileX := 0 to floorTileCount do
+  begin
+    { render the wall }
+    for wallTileY := 0 to 2 do	
+		PutImage(floorTileX * 40, 290 - wallTileY * 40, SPR_PATTERN_000, BOTTOM);
+		
+	PutImage(floorTileX * 40, 290, SPR_ITEM_WALL, 0);
+  end;
+  
   UpdateBounceMC(1);
 
   if (BounceMC[1].x > Screen^.w) then BounceMC[1].x := 0.0;
@@ -488,7 +510,7 @@ begin
   SetFontColor($FF, $FF, $FF);
 
   str(level, m);
-  OutTextXY(Screen^.w div 2, Screen^.h div 2, 'STAGE ' + m, HCENTER or VCENTER);
+  OutTextXY(Screen^.w div 2, Screen^.h div 2 - 100, 'STAGE ' + m, HCENTER or VCENTER);
 end;
 
 procedure RenderGame;
@@ -1138,12 +1160,13 @@ begin
     remains := ComputeRemains;
 
     if remains <= qualify then begin
+	  StopModule;
       PlayAudioOneShot(SND_WIN);              
               
       GamePlayState := GPS_END;
       GameOutcome   := GO_WIN;
       MCState       := MC_STATE_JUMP;
-
+	  
       bonusScoreTiles := (qualify - remains + 1) * SCORE_REMAINING;
 
 	  bonusScoreTime := Math.Max(0, LEVEL_TIME - ElapsedTime) div 1000;
@@ -1248,7 +1271,8 @@ begin
   if inflives=false then begin
     dec(lives);
 
-    if lives = 0 then begin              
+    if lives = 0 then begin         
+      StopModule;	
       PlayAudioOneShot(SND_LOSE);
 	  
       GamePlayState := GPS_END;
@@ -1418,6 +1442,15 @@ end;
 function IsSpecialTile(tile : char): boolean;
 begin
   IsSpecialTile := (tile = TILE_BONUS_TIME) and (tile = TILE_EXTRA_LIFE);
+end;
+
+procedure TransitionToMenu;
+begin
+  StartTransByRect(2, 12, GS_MENU);
+		  
+  StopModule;
+  LoadModule(MUSIC_MENU_FILE_NAME);
+  PlayModule;
 end;
 
 end.

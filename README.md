@@ -25,6 +25,8 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
 Sound fx licenses:
 See the each wav file license on freesound.org
 
+Uses music player code from [Micromod](https://github.com/martincameron/micromod), a mod player by @martincameron
+
 ## Setup&Install&Build (FPC version)
 Instructions are for Windows systems.
 
@@ -57,7 +59,7 @@ These are:
 * Music support;
 * True full-screen (might need porting to SDL 2).
 
-## Screeshots
+## Screenshots
 
 Latest version:
 ![plotting menu](.media/plotting_menu.png "Main Menu")

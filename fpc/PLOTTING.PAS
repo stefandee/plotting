@@ -9,7 +9,6 @@ program Plotting_Reloaded;
 
  - exit ingame dialog
  - intro - 1994 character bounce on letters
- - music :) 
 *)
 
 uses
@@ -26,7 +25,8 @@ uses
   PlottingUtils,
   game,
   StrUtils,
-  Audio;
+  Audio,
+  Music;
 
 { Global constants }
 const
@@ -212,12 +212,6 @@ begin
 
   SetFontColor($0, $7F, $FF);
   outtextxy(Screen^.w div 2, 180, 'Alex ''Alecsei'' Mazilu', HCENTER);  
-  
-  (*SetFontColor($FF, $FF, $FF);
-  outtextxy(Screen^.w div 2, 210,'Sound Effects', HCENTER);
-
-  SetFontColor($0, $7F, $FF);
-  outtextxy(Screen^.w div 2, 230, 'LittleRobotSoundFactory, Aesterial Arts', HCENTER);*)
   
   RenderOriginal;
 end;
@@ -547,20 +541,24 @@ begin
     end;
 end;
 
+procedure PlayMenuMusic;
+begin
+  StopModule;
+  LoadModule(MUSIC_MENU_FILE_NAME);
+  PlayModule;
+end;
+
 procedure Update;
 begin
   case state of
     GS_INIT:
       begin
       { handle keys }
-      if (IsKeyDown) then
+      if IsKeyDown or (SDL_GetTicks() - TimeSnap > INIT_DELAY) then
         begin
           StartTransByRect(2, 12, GS_MENU);
-        end
-      else if (SDL_GetTicks() - TimeSnap > INIT_DELAY) then
-        begin
-          StartTransByRect(2, 12, GS_MENU);
-        end;
+		  PlayMenuMusic;
+       end
       end;
 
     GS_CREDITS:
@@ -581,10 +579,9 @@ begin
         case KeyDown of
           { play game }
           SDLK_1:
-            begin
+            begin			
               InitGame;
 
-              InitLevelTitle;
               state := GS_GAME;
               TimeSnap := SDL_GetTicks();
             end;
@@ -625,6 +622,7 @@ begin
           { quit game }
           SDLK_ESCAPE:
             begin
+			  StopModule;
               StartTransByRect(2, 12, GS_EXIT);
             end;
         end;
@@ -841,7 +839,7 @@ BEGIN
 
  FrameCounter := 0;
  LastTick := SDL_GetTicks();
-
+ 
  while ( not AppDone ) do
  begin
    if (SDL_GetTicks()  - LastTick < 1000 / FPS) then
@@ -851,6 +849,8 @@ BEGIN
    inc(FrameCounter);
 
    ClearScreen($000000);
+
+   FillChar( event, SizeOf( TSDL_EVENT ), 0 );
 
    { handle the events }
    while ( SDL_PollEvent( @event ) = 1 ) do

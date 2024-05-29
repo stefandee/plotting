@@ -77,12 +77,12 @@ var
   audio_format : UInt16;
   audio_channels_str : String;
 begin
-	audio_rate := 44100;
-	audio_format := 8;
-	audio_channels := 1;
+	audio_rate := 22050;
+	audio_format := AUDIO_S16SYS;
+	audio_channels := 2;
 
     { Open the audio device }
-	if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, 4096) < 0) then
+	if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, 65536) < 0) then
 	begin
 		Log.LogError(Format('Couldn''t open audio: %s', [SDL_GetError]), 'Main');
 		TerminateApplication;

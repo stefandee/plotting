@@ -92,6 +92,9 @@ const
 const
   SETTINGS_FILE_NAME = 'settings.json';
 
+  MUSIC_MENU_FILE_NAME = 'data/music/songerson_-_dog65.mod';
+  MUSIC_GAME_FILE_NAME = 'data/music/songerson_-_dog62.mod';
+
   SPR_OCEAN = 2;
   SPR_TAITO = 4;
   SPR_BF    = 0;
@@ -150,8 +153,8 @@ var
   TopScores   : TTopScores;
 
   BounceMC    : array[1..MAX_BOUNCE_MC] of TBounceMC;
-
-  function  IsKeyDown:Boolean;
+  
+  function  IsKeyDown:Boolean; { returns the last key down event processed by SDL_PollEvent - not very correct though }
   function  KeyDown:Integer;
   function  KeyDownUnicode:Integer;
   function  LoadImage( Filename: string ) : PSDL_SURFACE;
