@@ -34,7 +34,13 @@ Install Free Pascal Compiler. Version 3.2.2 was used.
 
 Run build_plotting.bat to build and run the game.
 
-SDL 1.2 DLLs are provided. Feel free to use your own or build them from sources.
+The following SDL 1.2 DLLs are required to run the build:
+* SDL_mixer.dll
+* SDL_ttf.dll
+* SDL_gfx.dll
+* SDL.dll
+
+You may find them in the release packages or feel free to use your own.
 
 Make_Levels.pas is used to create the levels files (data\Levels). Edit then run build_make_levels.bat
 
@@ -56,7 +62,6 @@ These are:
 ## TODO
 * Smoother tile movement;
 * Add more levels;
-* Music support;
 * True full-screen (might need porting to SDL 2).
 
 ## Screenshots
